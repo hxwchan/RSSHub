@@ -13,8 +13,8 @@ export default async (ctx) => {
         description: `skeb - requests for ${query}`,
         item: data.hits.map((hit) => ({
             title: `${host}${hit.path}`,
-            description: hit.body,
-            author: /^\/(?<creator>@.+)\/works\/\d+$/.exec(hit.path)?.groups?.creator,
+            description: removeControlChars(hit.body),
+            author: removeControlChars(/^\/(?<creator>@.+)\/works\/\d+$/.exec(hit.path)?.groups?.creator),
             category: hit.genre,
             link: `${host}${hit.path}`,
         })),
