@@ -37,3 +37,5 @@ const queryRequests = async (query: string) => {
     });
     return resp.data;
 };
+
+const removeControlChars = (str?: string) => str?.replaceAll(/[\u0000-\u001F\u007F]/g, '');
